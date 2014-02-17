@@ -26,26 +26,39 @@
 		  <div class="navbar-collapse collapse">
 		    <ul class="nav navbar-nav">
 		      <li><a href="index.html">Home</a></li>
-		      <li class="active"><a href="inversionstable.html">Таблиця інверсій</a></li>
-		      <li><a href="eratoshenes.html">Решето Ератосфена</a></li>
+		      <li><a href="inversionstable.html">Таблиця інверсій</a></li>
+		      <li class="active"><a href="eratoshenes.html">Решето Ератосфена</a></li>
 		    </ul>
 		  </div>
 		</div>
 	</div>
 
 		<div class="container">
-			<h1>Таблиця інверсій</h1>
+			<h1>Решето Ератосфена</h1>
+			<h4>
+				Алгоритм знаходження всіх простих чисел на проміжку від M до N
+			</h4>
 
-			<div class="input-group col-lg-4" style="margin-bottom: 10px;">
-			  <span class="input-group-addon">Початкова послідовність</span>
-			  <input type="text" maxlength="10" id="source"class="form-control" placeholder="Початкова послідовність">
+			<div class="row">
+				<div class="col-lg-3">
+					<div class="input-group">
+					  <span class="input-group-addon">M</span>
+					  <input type="text" id="mvalue" class="form-control">
+					</div>
+				</div>
+				<div class="col-lg-3">
+					<div class="input-group">
+					  <span class="input-group-addon">N</span>
+					  <input type="text" id="nvalue" class="form-control">
+					</div>
+				</div>
+				<button type="button" id="perform" class="btn btn-primary">Шукати</button>
 			</div>
-
-			<div class="input-group col-lg-4">
-			  <span class="input-group-addon">Таблиця інверсій</span>
-			  <input type="text" id="invert" maxlength="10" class="form-control" placeholder="Таблиця інверсій">
-			</div>
+			<span id="result" style="margin-top: 20px;"></span>
+			<br>
+			<span id="resultSumm" style="margin-top: 20px;"></span>
 		</div>
+
 	</div>
 	<div id="footer">
 		<div class="container">
@@ -55,18 +68,10 @@
 
 <script type="text/javascript">
 
-	$("#source").keyup(function() {
-		var a = $("#source").val();
-		$("#invert").val(makeInvert(a));
-		});
-
-	$("#invert").keyup(function() {
-		var a = $("#invert").val();
-		$("#source").val(makeSource(a));
-		});
-
-
+	
 	var keyValidate = function (e) {
+			$("#result").text('');
+			$("#resultSumm").text('');
 	        if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 190]) !== -1 ||
 	            (e.keyCode == 65 && e.ctrlKey === true) || 
 	            (e.keyCode >= 35 && e.keyCode <= 39)) {
@@ -78,9 +83,23 @@
 	    };
 
 	$(document).ready(function() {
-		$("#source").keydown(keyValidate);
-		$("#invert").keydown(keyValidate);
+		$("#mvalue").keydown(keyValidate);
+		$("#nvalue").keydown(keyValidate);
+
+
+		$("#perform").click(function(argc) {
+			var m = $("#mvalue").val();
+			var n = $("#nvalue").val();
+			var result = eratosthenes(m,n);
+			var str = result.join(', ');
+
+			$("#result").text(str);
+			$("#resultSumm").text('Сума = ' + getSumm(result));
+		});
+
 	});
+
+
 
 
 </script>

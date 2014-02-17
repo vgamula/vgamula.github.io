@@ -39,3 +39,32 @@ function makeSource(value) {
 	};
 	return array.join("");
 }
+
+function eratosthenes(m, n) {
+	var array = [false, true];
+	for (var i=2; i <= n; i++) {
+		array.push(true);
+	}
+	for (var i = 2; i*i < n; i++) {
+		if (array[i]) {
+			for (var j = i*i; j <= n; j+=i) {
+				array[j] = false;
+			};
+		}
+	};
+	var arr = [];
+	for (var i = m; i < n; i++) {
+		if (array[i]) {
+			arr.push(i);
+		}
+	};
+	return arr;
+}
+
+function getSumm(array) {
+	var s = 0;
+	for (var i = 0; i < array.length; i++) {
+		s += parseInt(array[i]);
+	};
+	return s;
+}
