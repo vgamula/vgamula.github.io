@@ -24,9 +24,9 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="index.html">Головна</a></li>
+                    <li><a href="index.html">Головна</a></li>
                     <li><a href="inversionstable.html">Таблиця інверсій</a></li>
-                    <li><a href="eratoshenes.html">Решето Ератосфена</a></li>
+                    <li class="active"><a href="eratoshenes.html">Решето Ератосфена</a></li>
                 </ul>
             </div>
         </div>
@@ -87,11 +87,10 @@
 
 
 		$("#perform").click(function(argc) {
-			var m = $("#mvalue").val();
-			var n = $("#nvalue").val();
+			var m = parseInt($("#mvalue").val());
+			var n = parseInt($("#nvalue").val());
 			var result = eratosthenes(m,n);
 			var str = result.join(', ');
-
 			$("#result").text(str);
 			$("#resultSumm").text('Сума = ' + getSumm(result));
 		});
