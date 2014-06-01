@@ -10,7 +10,6 @@ function makeInvert(value) {
 			return "Не повинно бути повторень!";
 		}
 	};
-	console.log(array);	
 	var i = 0;
 	while (array.length != 0) {
 		var index = array.indexOf(i);
